@@ -272,7 +272,7 @@
           aliases:
             - /serverless/datadog_lambda_library/
             - /serverless/serverless_integrations/cli/
-  
+
   - repo_name: synthetics-ci-github-action
     contents:
     - action: pull-and-push-file
@@ -616,6 +616,10 @@
         - "runtime/**/*.yaml"
         - "runtime/**/*.yml"
         - "runtime/**/*.md"
+        - "workload-security/**/*.json"
+        - "workload-security/**/*.yaml"
+        - "workload-security/**/*.yml"
+        - "workload-security/**/*.md"
       options:
         dest_path: '/security_platform/default_rules/'
 

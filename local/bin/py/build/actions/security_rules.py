@@ -137,6 +137,9 @@ def security_rules(content, content_dir):
                             page_data['rule_category'].append('Infrastructure Configuration')
                         else:
                             page_data['rule_category'].append('Workload Security')
+                    if 'workload-security' in relative_path:
+                        if 'signal-rules' in relative_path:
+                            page_data['rule_category'].append('Workload Security')
 
                     tags = data.get('tags', [])
                     if tags:
