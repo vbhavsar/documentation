@@ -162,23 +162,8 @@
                         <ul class="footer-menu mt-1">
                             {{ range .Site.Menus.footer_blog }}
                             <li>
-                                {{ if eq (substr .URL 0 1) "/" }}
-                                    <!-- to specifig lang page e.g /es/blog -->
-                                    {{ if $.Site.Params.branch }}
-                                        {{ $.Scratch.Set "flink" ( (print "/" $.Site.Params.branch .URL) | absURL) }}
-                                    {{ else }}
-                                        {{ $url := cond (hasPrefix .URL "http") (.URL | absURL) (printf "https://www.datadoghq.com/%s" .URL) }}
-                                        {{ $.Scratch.Set "flink" $url }}
-                                    {{ end }}
-                                    {{ partial "footer_link" (dict "footer_link" . "base_url" ($.Scratch.Get "flink") ) }}
-                                {{ else }}
-                                    {{ if eq $.Site.Params.full_translation true }}
-                                        {{ partial "footer_link" (dict "footer_link" . "base_url" ( .URL | absLangURL) ) }}
-                                    {{ else }}
-                                        {{ $url := cond (hasPrefix .URL "http") (.URL | absURL) (printf "https://www.datadoghq.com/%s" .URL) }}
-                                        {{ partial "footer_link" (dict "footer_link" . "base_url" $url ) }}
-                                    {{ end }}
-                                {{ end }}
+                                {{ $url := cond (hasPrefix .URL "http") (.URL | absURL) (printf "https://www.datadoghq.com/%s" (strings.TrimPrefix "/" .URL)) }}
+                                {{ partial "footer_link" (dict "footer_link" . "base_url" $url ) }}
                             </li>
                             {{ end }}
                         </ul>
